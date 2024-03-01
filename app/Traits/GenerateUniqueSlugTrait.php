@@ -9,31 +9,32 @@ trait GenerateUniqueSlugTrait
     public static function bootGenerateUniqueSlugTrait(): void
     {
         static::saving(function ($model) {
-            $slug = Str::slug($model->title);
-            $model->slug = $model->generateUniqueSlug($slug);
+            // Генерируем уникальный слаг перед сохранением модели
+            $slug = Str::slug($model->title); // Преобразуем заголовок в слаг
+            $model->slug = $model->generateUniqueSlug($slug); // Генерируем уникальный слаг и присваиваем его модели
         });
     }
 
     public function generateUniqueSlug(string $slug): string
     {
-        // Check if the slug already has a number at the end
-        $originalSlug = $slug;
-        $slugNumber = null;
+        // Проверяем, существует ли уже слаг с номером в конце
+        $originalSlug = $slug; // Сохраняем оригинальный слаг
+        $slugNumber = null; // Номер слага
 
         if (preg_match('/-(\d+)$/', $slug, $matches)) {
             $slugNumber = $matches[1];
             $slug = Str::replaceLast("-$slugNumber", '', $slug);
         }
 
-        // Check if the modified slug already exists in the table
+        // Получаем список существующих слагов в таблице
         $existingSlugs = $this->getExistingSlugs($slug, $this->getTable());
 
         if (!in_array($slug, $existingSlugs)) {
-            // Slug is unique, no need to append numbers
+            // Слаг уникален, не нужно добавлять номер
             return $slug . ($slugNumber ? "-$slugNumber" : '');
         }
 
-        // Increment the number until a unique slug is found
+        // Увеличиваем номер, пока не найдем уникальный слаг
         $i = $slugNumber ? ($slugNumber + 1) : 1;
         $uniqueSlugFound = false;
 
@@ -41,21 +42,21 @@ trait GenerateUniqueSlugTrait
             $newSlug = $slug . '-' . $i;
 
             if (!in_array($newSlug, $existingSlugs)) {
-                // Unique slug found
+                // Уникальный слаг найден
                 return $newSlug;
             }
 
             $i++;
         }
 
-        // Fallback: return the original slug with a random number appended
+        // Возвращаем оригинальный слаг с добавлением случайного числа
         return $originalSlug . '-' . mt_rand(1000, 9999);
     }
 
     private function getExistingSlugs(string $slug, string $table): array
     {
         return $this->where('slug', 'LIKE', $slug . '%')
-            ->where('id', '!=', $this->id ?? null) // Exclude the current model's ID
+            ->where('id', '!=', $this->id ?? null) // Исключаем ID текущей модели
             ->pluck('slug')
             ->toArray();
     }

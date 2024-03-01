@@ -1,0 +1,63 @@
+// Стили для обычной кнопки
+.button {
+    display: inline-block;
+    padding: 10px 20px; // Внутренние отступы
+    background-color: $button-color; // Цвет фона
+    color: white; // Цвет текста
+    border: none; // Убираем границу
+    border-radius: 5px; // Скругление углов
+    cursor: pointer; // Изменяем курсор при наведении
+    text-align: center; // Выравнивание текста по центру
+    transition: background-color 0.3s ease; // Плавное изменение цвета фона
+
+    // При наведении
+    &:hover {
+        background-color: lighten($button-color, 20%); // Осветляем цвет фона
+    }
+
+    // Крупная кнопка
+    &-lg {
+        font-size: 1.2em; // Увеличиваем размер шрифта
+        padding: 15px 40px; // Увеличиваем внутренние отступы
+    }
+
+    // Блочная кнопка
+    &-block {
+        width: 100%; // Занимает всю доступную ширину
+    }
+
+    // Неактивная кнопка
+    &:disabled {
+        background-color: lighten($button-color, 30%); // Осветляем цвет фона
+    }
+
+    // Кнопка с красным цветом
+    &-red {
+        background-color: $red-color; // Устанавливаем красный цвет фона
+
+        // При наведении
+        &:hover {
+            background-color: lighten($red-color, 20%); // Осветляем красный цвет фона
+        }
+
+        // Неактивная кнопка
+        &:disabled {
+            background-color: lighten($red-color, 30%); // Осветляем красный цвет фона
+        }
+    }
+
+    // Второстепенная кнопка
+    &-secondary {
+        background-color: $button-secondary-color; // Устанавливаем второстепенный цвет фона
+
+        // При наведении
+        &:hover {
+            background-color: lighten($button-secondary-color, 20%); // Осветляем второстепенный цвет фона
+        }
+
+        // Неактивная кнопка
+        &:disabled {
+            background-color: lighten($button-secondary-color, 30%); // Осветляем второстепенный цвет фона
+        }
+    }
+}

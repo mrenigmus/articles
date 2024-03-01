@@ -9,17 +9,21 @@ use Symfony\Component\HttpFoundation\Response;
 class IsAdmin
 {
     /**
-     * Handle an incoming request.
+     * Обрабатываем входящий запрос.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->bearerToken() === env("ADMIN_AUTH_KEY"))
+        if ($request->bearerToken() === env("ADMIN_AUTH_KEY")) {
+            // Если передан правильный ключ авторизации, пропускаем запрос дальше
             return $next($request);
-        else return response()->json([
-            'status' => 'error',
-            'message' => 'Ошибка авторизации'
-        ], 401);
+        } else {
+            // Иначе возвращаем ошибку авторизации
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Ошибка авторизации'
+            ], 401);
+        }
     }
 }

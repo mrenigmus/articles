@@ -1,0 +1,49 @@
+// Стили для всех типов input и textarea
+input,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    display: block;
+    width: 100%; // Занимает всю доступную ширину
+    padding: 10px; // Внутренние отступы
+    border: 1px solid #ccc; // Рамка средней толщины и серого цвета
+    border-radius: 5px; // Скругление углов
+    font-size: 16px; // Размер шрифта
+    margin-bottom: 10px; // Отступ снизу
+
+    // При фокусировке
+    &:focus {
+        outline: none; // Убираем фокусировку
+        border-color: $primary-color; // Изменяем цвет рамки при фокусировке
+    }
+}
+
+// Стили для textarea
+textarea {
+    resize: vertical; // Позволяет изменять высоту textarea только по вертикали
+}
+
+// Стили для меток
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+// Стили для текста ошибок
+.error {
+    color: red;
+    font-size: 0.9em;
+}
+
+// Стили для красного текста
+.red {
+    color: red;
+}
+
+// Стили для формы
+.form {
+    display: grid;
+    gap: 0rem;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1); // Тень
+}

@@ -1,8 +1,129 @@
-// Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
+// Подключение переменных
+@import "utilities/variables";
 
-// Variables
-@import 'variables';
+// Общие стили
+* {
+    font-family: "Lunasima", sans-serif;
+    box-sizing: border-box;
+    outline: none;
+}
 
-// Bootstrap
-@import 'bootstrap/scss/bootstrap';
+// Стили тела
+body {
+    background-color: $background-color;
+    color: $text-color;
+    margin: 0;
+    padding: 0;
+}
+
+// Контейнер приложения
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+// Общие стили для заголовков
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+}
+
+// Стили для ссылок
+a {
+    color: $primary-color;
+    text-decoration: none;
+}
+
+// Стили для кода
+code {
+    font-size: 1em;
+    background-color: rgba(#616161, 0.1);
+    color: #616161;
+}
+
+// Стили для кнопки
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: darken($primary-color, 10%);
+    }
+}
+
+// Контейнер
+.container {
+    padding: 0 20px; // Внутренние отступы по бокам
+
+    @media screen and (min-width: 768px) {
+        width: 100%; // Ширина 100% для планшетов и десктопов
+        max-width: 720px; // Ограничиваем максимальную ширину
+        margin: 0 auto; // Центрируем по горизонтали
+    }
+
+    @media screen and (min-width: 992px) {
+        max-width: 960px; // Увеличиваем максимальную ширину для более крупных экранов
+    }
+
+    @media screen and (min-width: 1200px) {
+        max-width: 1140px; // Увеличиваем максимальную ширину для очень крупных экранов
+    }
+}
+
+// Лоадер
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: $background-color;
+    z-index: 999;
+
+    &-spinner {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        border: 4px solid $primary-color;
+        border-top-color: transparent;
+        animation: spinner 0.5s linear infinite;
+    }
+}
+
+// Анимация спиннера
+@keyframes spinner {
+    from {
+        transform: translate(-50%, -50%) rotate(0);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(1turn);
+    }
+}
+
+// Дополнительные классы
+
+// Центрирование текста по центру
+.text-center {
+    text-align: center;
+}
+
+// Подключение компонентов
+@import "components/header";
+@import "components/footer";
+@import "components/form";
+@import "components/button";
+@import "components/pagination";
+@import "components/articles-list";
+@import "components/comment";
+@import "pages/articles";
+@import "pages/errors";

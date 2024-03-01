@@ -1,0 +1,41 @@
+// Стили для пагинации
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    // Стили для кнопок пагинации
+    &-button {
+        display: inline-block;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        background-color: darken($background-color, 3.5%);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        // При наведении
+        &:hover {
+            background-color: darken($background-color, 5%);
+        }
+
+        // Активная кнопка
+        &__active {
+            background-color: darken($background-color, 7%);
+            pointer-events: none;
+        }
+
+        // Неактивная кнопка
+        &:disabled {
+            pointer-events: none;
+            color: lighten($text-color, 50%);
+
+            // Стили для неактивной кнопки и ее состояния при наведении
+            &,
+            &:hover {
+                background-color: darken($background-color, 2.5%);
+            }
+        }
+    }
+}

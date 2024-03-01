@@ -1,0 +1,22 @@
+{
+    "extends": "@vue/tsconfig/tsconfig.dom.json",
+    "include": [
+        "resources/**/*.ts",
+        "resources/**/*.d.ts",
+        "resources/**/*.vue"
+    ],
+    "compilerOptions": {
+        "allowJs": true,
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "strict": false,
+        "noImplicitThis": true,
+        "types": ["vite/client"],
+        "paths": {
+            "@/*": ["./resources/js/*"],
+        },
+        "isolatedModules": true,
+        "verbatimModuleSyntax": true,
+    }
+}

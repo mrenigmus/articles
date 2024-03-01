@@ -2,12 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\MaxHtmlLength;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateArticleRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Определяем, может ли пользователь делать этот запрос.
      */
     public function authorize(): bool
     {
@@ -15,16 +16,15 @@ class UpdateArticleRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Получаем правила валидации для запроса.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'short_desc' => 'nullable|string|max:255',
+            'title' => 'required|string|max:255', // Заголовок обязателен, строка, максимум 255 символов
+            'content' => ['required', 'string', new MaxHtmlLength(10000)] // Содержание обязательно, строка, максимальная длина 10000 символов
         ];
     }
 }

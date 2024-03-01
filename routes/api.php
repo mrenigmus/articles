@@ -16,13 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix("articles")->controller(ArticleController::class)->group(function (){
+Route::middleware("admin")->post("/auth", function () {
+    return response()->json([
+        "status" => "success"
+    ]);
+});
+Route::prefix("articles")->controller(ArticleController::class)->group(function () {
     Route::get("/", "index");
     Route::post("/", "store");
     Route::get("/{slug}", "show");
-    Route::put("/{id}", "update")->whereNumber("id");
-    Route::delete("{id}", "destroy")->whereNumber("id");
-    Route::prefix("/{id}/comments")->controller(CommentController::class)->group(function (){
+    Route::put("/{slug}", "update");
+    Route::delete("{slug}", "destroy");
+    Route::prefix("/{id}/comments")->controller(CommentController::class)->group(function () {
         Route::post("/", "store");
         Route::get("/", "index");
     });

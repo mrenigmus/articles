@@ -1,0 +1,123 @@
+// Стили для статьи
+.article {
+    padding-top: 1rem; // Верхний отступ
+
+    // Заголовок статьи
+    &-header {
+        display: flex;
+        align-items: start;
+        @media (max-width: 768px){
+            display: block;
+        }
+    }
+
+    // Заголовок статьи
+    &-title {
+        margin-top: 0;
+        word-break: break-word;
+        width: 80%;
+
+        // Placeholder для пустого заголовка
+        &[placeholder]:empty::before {
+            content: attr(placeholder);
+            color: #777;
+            cursor: text;
+        }
+
+        // Убираем placeholder при фокусировке
+        &[placeholder]:empty:focus::before {
+            content: "";
+        }
+    }
+
+    // Информация о статье
+    &-info {
+        margin-left: auto;
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        // Время чтения
+        &__reading-time {
+            font-size: 0.9em;
+            color: lighten($text-color, 40%);
+        }
+
+        @media (max-width: 768px){
+            margin-left: 0;
+            text-align: left;
+        }
+    }
+
+    // Содержание статьи
+    &-content {
+        word-break: break-word;
+        width: 100%;
+
+        // Placeholder для пустого содержания
+        &[placeholder]:empty::before {
+            content: attr(placeholder);
+            color: #777;
+            cursor: text;
+        }
+
+        // Убираем placeholder при фокусировке
+        &[placeholder]:empty:focus::before {
+            content: "";
+        }
+    }
+
+    // Комментарии к статье
+    &-comments {
+        margin-top: 4rem;
+
+        // Список комментариев
+        &__list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        // Комментарий
+        &__comment {
+            padding: 15px 20px;
+            background: darken($background-color, 3%);
+            border-radius: 5px;
+
+            // Время комментария
+            &-time {
+                float: right;
+            }
+
+            // Имя автора комментария
+            &-name {
+                font-size: 1.2em;
+                font-weight: 600;
+                margin-bottom: 0.3rem;
+                word-break: break-word;
+            }
+
+            // Текст комментария
+            &-text {
+                word-break: break-word;
+            }
+        }
+
+        // Форма для комментария
+        &__form {
+            margin-bottom: 1rem;
+
+            // Поле ввода комментария
+            textarea {
+                min-height: 100px;
+                max-height: 100px;
+                resize: none;
+            }
+        }
+    }
+}

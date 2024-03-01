@@ -9,9 +9,11 @@ class Comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['article_id', 'name', 'text'];
+    protected $fillable = ['article_id', 'name', 'text']; // Массив полей, разрешенных для массового заполнения
 
-    public function article(){
+    // Отношение: комментарий принадлежит статье
+    public function article()
+    {
         return $this->belongsTo(Article::class);
     }
 }

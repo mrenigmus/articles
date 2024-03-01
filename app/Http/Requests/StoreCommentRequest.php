@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class StoreCommentRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Определяем, может ли пользователь делать этот запрос.
      */
     public function authorize(): bool
     {
@@ -15,15 +15,15 @@ class StoreCommentRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Получаем правила валидации для запроса.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:64',
-            'text' => 'required|string|max:255',
+            'name' => 'required|string|max:64', // Имя обязательно, строка, максимум 64 символа
+            'text' => 'required|string|max:255', // Текст обязателен, строка, максимум 255 символов
         ];
     }
 }

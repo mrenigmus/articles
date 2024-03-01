@@ -1,0 +1,50 @@
+// Стили для списка статей
+.articles-list {
+    // Ссылки внутри списка
+    a {
+        text-decoration: none; // Убираем подчеркивание
+        color: inherit; // Наследуем цвет
+    }
+
+    // Элемент списка
+    &__item {
+        margin-bottom: 20px; // Отступ снизу
+        padding: 25px; // Внутренние отступы
+        background-color: darken($background-color, 3%); // Фон, затемненный на 3%
+        border-radius: .25rem; // Скругление углов
+        cursor: pointer; // Изменяем курсор при наведении
+        transition: .25s background-color ease; // Плавное изменение цвета фона
+
+        // При наведении
+        &:hover {
+            background-color: darken($background-color, 5%); // Осветляем цвет фона
+        }
+
+        // При нажатии
+        &:active {
+            background-color: darken($background-color, 10%); // Усиленно затемняем цвет фона
+        }
+    }
+
+    // Заголовок статьи
+    &__title {
+        font-size: 20px; // Размер шрифта
+        margin-top: 0; // Отступ сверху
+        margin-bottom: 5px; // Отступ снизу
+        word-break: break-word; // Перенос слов при необходимости
+    }
+
+    // Описание статьи
+    &__description {
+        font-size: 16px; // Размер шрифта
+        color: #666666; // Цвет текста
+        margin: 0; // Обнуляем внешние отступы
+        word-break: break-word; // Перенос слов при необходимости
+    }
+
+    // Время публикации статьи
+    &__time {
+        float: right; // Выравнивание по правому краю
+        color: #666666; // Цвет текста
+    }
+}

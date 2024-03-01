@@ -1,0 +1,11 @@
+.error-page {
+    text-align: center;
+    &__code {
+        font-size: 10em;
+        margin-bottom: 0;
+        color: $primary-color;
+    }
+    &__description {
+        margin-bottom: 2rem;
+    }
+}
