@@ -1,27 +1,36 @@
+// Стили для шапки
 .header {
     background-color: $background-color;
     color: $text-color;
     padding: 20px 0;
 
+    // Контейнер шапки
     .container {
         display: flex;
         align-items: center;
     }
 
-    &__logo, &__logo h1 {
-        text-decoration: none!important;
+    // Логотип
+    &__logo,
+    &__logo h1 {
+        text-decoration: none !important;
         color: inherit;
         font-size: 24px;
         font-weight: 700;
         margin: 0;
+
+        // Цвет для span в логотипе
         span {
             color: $primary-color;
         }
     }
 
+    // Навигация
     &__nav {
         position: relative;
         margin-left: auto;
+
+        // Список навигации
         ul {
             display: flex;
             gap: 1rem;
@@ -29,14 +38,18 @@
             margin: 0;
             padding: 0;
         }
+
+        // Элементы навигации
         &__item {
             display: inline-block;
             margin-right: 20px;
 
+            // Ссылки
             & a {
                 color: white;
                 text-decoration: none;
 
+                // При наведении
                 &:hover {
                     text-decoration: underline;
                 }
@@ -45,6 +58,7 @@
     }
 }
 
+// Стили для блока аутентификации администратора
 .admin-auth {
     position: absolute;
     width: 220px;
@@ -54,8 +68,10 @@
     background: #fff;
     padding: 0.5rem;
     border-radius: 6px;
-    box-shadow: 0 0 20px 0 rgba(0,0,0,.1);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+
+    // Убираем отступы у всех элементов
     * {
-        margin: 0!important;
+        margin: 0 !important;
     }
 }
