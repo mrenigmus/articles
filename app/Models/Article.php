@@ -14,14 +14,17 @@ class Article extends Model
 {
     use HasFactory, GenerateUniqueSlugTrait;
 
-    protected $fillable = ['slug', 'title', 'content'];
+    protected $fillable = ['slug', 'title', 'content']; // Массив полей, разрешенных для массового заполнения
 
-    protected $appends = ['short_desc'];
+    protected $appends = ['short_desc']; // Добавляем виртуальное поле для короткого описания статьи
 
-    public function getShortDescAttribute(){
+    // Получаем короткое описание статьи (первые 255 символов без HTML-тегов)
+    public function getShortDescAttribute()
+    {
         return substr(strip_tags($this->content), 0, 255);
     }
 
+    // Отношение: у статьи может быть много комментариев
     public function comments()
     {
         return $this->hasMany(Comment::class, "article_id");
